@@ -1,0 +1,65 @@
+package com.desafiospringboot.desafio.service;
+
+import com.desafiospringboot.desafio.dto.VendedorDTO;
+import com.desafiospringboot.desafio.model.entity.Vendedor;
+import com.desafiospringboot.desafio.repository.VendedorRepository;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
+
+@Service
+public class VendedorService {
+
+    @Autowired
+    private VendedorRepository vendedorRepository;
+
+
+    public VendedorDTO buscaPorId(Long id) {
+        Vendedor vendedor = vendedorRepository.findById(id).orElseThrow(() -> new RuntimeException("Vendedor não encontrado"));
+
+        return new VendedorDTO(vendedor.getId(), vendedor.getNome(), vendedor.getEmail());
+    }
+
+    public VendedorDTO criar(VendedorDTO dto) {
+        Vendedor vendedor1 = new Vendedor();
+        vendedor1.setId(dto.id());
+        vendedor1.setNome(dto.nome());
+        vendedor1.setEmail(dto.email());
+
+        vendedor1 = vendedorRepository.save(vendedor1);
+
+        return new VendedorDTO(vendedor1.getId(), vendedor1.getNome(), vendedor1.getEmail());
+    }
+
+    public VendedorDTO atualizar(Long id, VendedorDTO dto) {
+
+        try {
+            Vendedor vendedor1 = new Vendedor();
+            vendedor1.setId(id);
+            vendedor1.setNome(dto.nome());
+            vendedor1.setEmail(dto.email());
+
+            vendedor1 = vendedorRepository.save(vendedor1);
+            return new VendedorDTO(vendedor1.getId(), vendedor1.getNome(), vendedor1.getEmail());
+        }
+        catch (EntityNotFoundException e) {
+            throw new RuntimeException("Usuario não encontado");
+        }
+    }
+
+
+    public void deletar(Long id) {
+        vendedorRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario não encotrado"));
+
+        try {
+            vendedorRepository.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new RuntimeException("Erro ao deletar vendedor");
+        }
+
+
+    }
+
+}

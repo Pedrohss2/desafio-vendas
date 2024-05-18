@@ -2,14 +2,19 @@ package com.desafiospringboot.desafio.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "venda")
 @Entity
+@Getter
+@Setter
 public class Venda {
 
     @Id
@@ -26,9 +31,11 @@ public class Venda {
     @JoinColumn(name = "vendedor_id", nullable = false)
     private Vendedor vendedor;
 
-    @Column(name = "criado_em")
-    private LocalDate criadoEm;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "criado_em", nullable = false, updatable = false)
+    private Date criadoEm;
 
-    @Column(name = "atualizado_em")
-    private LocalDate atualizadoEm;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "atualizado_em", nullable = false, updatable = false)
+    private Date atualizadoEm;
 }
