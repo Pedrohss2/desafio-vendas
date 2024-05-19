@@ -12,14 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,10 +45,8 @@ public class VendaService {
         return new VendaDTO(venda.getId(), venda.getValor(), venda.getDataVenda(), venda.getVendedor(), venda.getCriadoEm(), venda.getAtualizadoEm());
     }
 
-
     public List<VendaResumoDTO> calcularVendasPorPeriodo(LocalDate dataInicio, LocalDate dataFim) {
         List<Vendedor> vendedores = vendedorRepository.findAll();
-
 
         return vendedores.stream().map(vendedor -> {
             List<Venda> venda = vendaRepository.findVendaByVendedor(vendedor.getId(), dataInicio, dataFim);

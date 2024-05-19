@@ -2,6 +2,7 @@ package com.desafiospringboot.desafio.controller;
 
 import com.desafiospringboot.desafio.dto.VendedorDTO;
 import com.desafiospringboot.desafio.service.VendedorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class VendedorController {
     }
 
     @PostMapping
-    public ResponseEntity<VendedorDTO> inserir(@RequestBody VendedorDTO dto) {
+    public ResponseEntity<VendedorDTO> inserir(@Valid @RequestBody VendedorDTO dto) {
         dto = vendedorService.criar(dto);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -36,11 +37,10 @@ public class VendedorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<VendedorDTO> atualizar(@PathVariable Long id,@RequestBody VendedorDTO dto) {
+    public ResponseEntity<VendedorDTO> atualizar(@PathVariable Long id, @Valid @RequestBody VendedorDTO dto) {
         dto = vendedorService.atualizar(id, dto);
         return ResponseEntity.ok(dto);
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {

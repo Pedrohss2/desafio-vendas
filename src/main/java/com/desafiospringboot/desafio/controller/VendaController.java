@@ -3,6 +3,7 @@ package com.desafiospringboot.desafio.controller;
 import com.desafiospringboot.desafio.dto.VendaDTO;
 import com.desafiospringboot.desafio.dto.VendaResumoDTO;
 import com.desafiospringboot.desafio.service.VendaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,8 @@ public class VendaController {
     @Autowired
     private VendaService vendaService;
 
-
     @PostMapping
-    public ResponseEntity<VendaDTO> criar(@RequestBody VendaDTO dto) {
+    public ResponseEntity<VendaDTO> criar(@Valid @RequestBody VendaDTO dto) {
         dto = vendaService.criar(dto);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -31,8 +31,6 @@ public class VendaController {
 
         return ResponseEntity.created(uri).body(dto);
     }
-
-
 
     @GetMapping("/resumo")
     public ResponseEntity<List<VendaResumoDTO>> obterResumo(
