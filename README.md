@@ -42,9 +42,9 @@ http://localhost:8080/vendedor
 }
 ```
 -------------------
-
+End-point: Gerar resumo de vendas
 ```METODO: GET
-htto://localhost:8080/venda/resumo?dataInicio=2023-08-03&dataFim=2023-08-10
+http://localhost:8080/venda/resumo?dataInicio=2023-08-03&dataFim=2023-08-10
 ```
 
 ```Body (raw)
