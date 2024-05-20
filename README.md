@@ -3,9 +3,6 @@
 
 Uma API que permite criar um vendedor, posta venda e gera um resumo de vendas.
 
-
-End point para criar Vendedo
-
 ## Funcionalidades
 
 - CRUD vendedor
@@ -13,8 +10,6 @@ End point para criar Vendedo
 - Geração de resumo de vendas diarias
 
 ## Uso/Exemplos
-End-point para criar um vendedor
-
 End-point para criar um novo vendedor 
 
 Method: POST
@@ -29,7 +24,27 @@ Body (raw)
 }
 ```
 -------------------
-End-point: criar venda
+
+End-point: Procurar Vendedor por ID
+
+Method: GET
+```
+localhost:8080/vendedor/xxxx
+```
+Body (Pretty)
+
+```
+{
+    "id": xxxx,
+    "nome": "teste teste",
+    "email": "teste@gmail.com",
+    "criadoEm": "2024-05-20T23:17:50.295+00:00",
+    "atualizadoEm": "2024-05-20T23:17:50.295+00:00"
+}
+```
+-------------------
+
+End-point: Criar venda
 
 Method: POST
 
@@ -47,8 +62,6 @@ Body (raw)
 }
 ```
 -------------------
-End-point: Gerar resumo de vendas
-
 End-point: Gerar resumo de vendas
 
 Method: GET
@@ -74,3 +87,5 @@ Body (raw)
     }
 ]
 ```
+
+
