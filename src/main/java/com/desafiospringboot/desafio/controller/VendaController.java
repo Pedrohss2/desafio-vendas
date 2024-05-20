@@ -2,7 +2,9 @@ package com.desafiospringboot.desafio.controller;
 
 import com.desafiospringboot.desafio.dto.VendaDTO;
 import com.desafiospringboot.desafio.dto.VendaResumoDTO;
+import com.desafiospringboot.desafio.dto.VendedorDTO;
 import com.desafiospringboot.desafio.service.VendaService;
+import com.desafiospringboot.desafio.service.VendedorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,16 @@ public class VendaController {
     @Autowired
     private VendaService vendaService;
 
+    @Autowired
+    private VendedorService vendedorService;
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<VendaDTO> buscarVendedorPorId(@PathVariable Long id){
+        VendaDTO vendaDTO = vendaService.buscaPorId(id);
+        return ResponseEntity.ok().body(vendaDTO);
+    }
+
     @PostMapping
     public ResponseEntity<VendaDTO> criar(@Valid @RequestBody VendaDTO dto) {
         dto = vendaService.criar(dto);
@@ -30,6 +42,19 @@ public class VendaController {
                 .toUri();
 
         return ResponseEntity.created(uri).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<VendaDTO> atualizar(@PathVariable Long id, @Valid @RequestBody VendaDTO dto) {
+        dto = vendaService.atualizar(id, dto);
+        return ResponseEntity.ok().build();
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        vendedorService.deletar(id);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/resumo")
@@ -43,4 +68,9 @@ public class VendaController {
         var valores = vendaService.calcularVendasPorPeriodo(dataInicioParse, dataFinalParse);
         return ResponseEntity.ok().body(valores);
     }
+
+
+
+
+
 }

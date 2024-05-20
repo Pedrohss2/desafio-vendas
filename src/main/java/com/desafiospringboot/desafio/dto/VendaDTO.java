@@ -2,9 +2,6 @@ package com.desafiospringboot.desafio.dto;
 
 import com.desafiospringboot.desafio.model.entity.Venda;
 import com.desafiospringboot.desafio.model.entity.Vendedor;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,4 +19,13 @@ public class VendaDTO {
     private Vendedor vendedor_id;
     private Date criadoEm;
     private Date atualizadoEm;
+
+    public VendaDTO(Venda venda) {
+        this.id = venda.getId();
+        this.valor = venda.getValor();
+        this.dataVenda = venda.getDataVenda();
+        this.vendedor_id = venda.getVendedor();
+        this.criadoEm = venda.getCriadoEm();
+        this.atualizadoEm = venda.getAtualizadoEm();
+    }
 }

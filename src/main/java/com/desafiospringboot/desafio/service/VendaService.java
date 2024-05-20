@@ -7,9 +7,14 @@ import com.desafiospringboot.desafio.model.entity.Venda;
 import com.desafiospringboot.desafio.model.entity.Vendedor;
 import com.desafiospringboot.desafio.repository.VendaRepository;
 import com.desafiospringboot.desafio.repository.VendedorRepository;
+import com.desafiospringboot.desafio.service.exception.BancoDeDadosException;
+import com.desafiospringboot.desafio.service.exception.RecursoNaoEncontrado;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.PushBuilder;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -32,11 +37,17 @@ public class VendaService {
     @Autowired
     private ModelMapper modelMapper;
 
+
+    @Transactional
+    public VendaDTO buscaPorId(Long id) {
+        Venda venda = vendaRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontrado("Vendedor não encontrado"));
+
+        return new VendaDTO(venda);
+    }
+
     public VendaDTO criar(VendaDTO dto) {
 
         Venda venda = modelMapper.map(dto, Venda.class);
-
-        venda.setVendedor(dto.getVendedor_id());
 
         venda.setCriadoEm(Date.from(Instant.now()));
         venda.setAtualizadoEm(Date.from(Instant.now()));
@@ -44,6 +55,35 @@ public class VendaService {
         venda = vendaRepository.save(venda);
 
         return modelMapper.map(venda, VendaDTO.class);
+    }
+
+
+    public VendaDTO atualizar(Long id, VendaDTO dto) {
+        try {
+            Venda venda = modelMapper.map(dto, Venda.class);
+
+            venda.setCriadoEm(Date.from(Instant.now()));
+            venda.setAtualizadoEm(Date.from(Instant.now()));
+
+            venda = vendaRepository.save(venda);
+
+            return modelMapper.map(venda, VendaDTO.class);
+        }
+        catch (EntityNotFoundException e) {
+            throw new RecursoNaoEncontrado("Usuario não encontado");
+        }
+    }
+
+
+    public void deletar(Long id) {
+        vendaRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontrado("Usuario não encotrado"));
+
+        try {
+            vendaRepository.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new BancoDeDadosException("Erro ao deletar vendedor");
+        }
     }
 
     public List<VendaResumoDTO> calcularVendasPorPeriodo(LocalDate dataInicio, LocalDate dataFim) {
@@ -55,11 +95,11 @@ public class VendaService {
 
             double totalDeVendas = vendedor.getVendas().size();
 
-            List<Venda> venda = vendaRepository.findVendaByVendedor(vendedor.getId(), dataInicio, dataFim); // Seleciona pelo periodo de tempo
+            List<Venda> venda = vendaRepository.findVendaByVendedor(vendedor.getId(), dataInicio, dataFim);
 
-            var caucularMediaDiaria = this.calcularMediaDiaria(dataInicio, dataFim, totalDeVendas);
+            double mediaDiaria = this.calcularMediaDiaria(dataInicio, dataFim, totalDeVendas);
 
-            return new VendaResumoDTO(vendedor.getNome(), totalDeVendas, caucularMediaDiaria);
+            return new VendaResumoDTO(vendedor.getNome(), totalDeVendas, mediaDiaria);
         }).collect(Collectors.toList());
     }
 
@@ -72,6 +112,7 @@ public class VendaService {
 
         return medidaDeVendasDiarias;
     }
+
 
     public void validarData(LocalDate dataInicio, LocalDate dataFim) {
         if(dataInicio.isAfter(dataFim)) throw new IllegalArgumentException("Data inicial não pode ser apos a final!");

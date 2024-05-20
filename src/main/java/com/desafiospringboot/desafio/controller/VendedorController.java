@@ -39,7 +39,7 @@ public class VendedorController {
     @PutMapping("/{id}")
     public ResponseEntity<VendedorDTO> atualizar(@PathVariable Long id, @Valid @RequestBody VendedorDTO dto) {
         dto = vendedorService.atualizar(id, dto);
-        return ResponseEntity.ok().body(dto);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")

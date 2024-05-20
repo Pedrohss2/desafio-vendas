@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.util.Date;
+
 @Service
 public class VendedorService {
 
@@ -25,24 +28,28 @@ public class VendedorService {
     public VendedorDTO buscaPorId(Long id) {
         Vendedor vendedor = vendedorRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontrado("Vendedor não encontrado"));
 
-        return new VendedorDTO(vendedor.getId(), vendedor.getNome(), vendedor.getEmail());
+        return new VendedorDTO(vendedor);
     }
 
-    @Transactional
     public VendedorDTO criar(VendedorDTO dto) {
 
         Vendedor vendedor = modelMapper.map(dto, Vendedor.class);
+
+        vendedor.setCriadoEm(Date.from(Instant.now()));
+        vendedor.setAtualizadoEm(Date.from(Instant.now()));
 
         vendedor = vendedorRepository.save(vendedor);
 
         return modelMapper.map(vendedor, VendedorDTO.class);
     }
 
-    @Transactional
-    public VendedorDTO atualizar(Long id, VendedorDTO dto) {
 
+    public VendedorDTO atualizar(Long id, VendedorDTO dto) {
         try {
             Vendedor vendedor = modelMapper.map(dto, Vendedor.class);
+
+            vendedor.setCriadoEm(Date.from(Instant.now()));
+            vendedor.setAtualizadoEm(Date.from(Instant.now()));
 
             vendedor = vendedorRepository.save(vendedor);
 
