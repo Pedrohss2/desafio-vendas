@@ -43,7 +43,6 @@ public class VendedorService {
         return modelMapper.map(vendedor, VendedorDTO.class);
     }
 
-
     public VendedorDTO atualizar(Long id, VendedorDTO dto) {
         try {
             Vendedor vendedor = modelMapper.map(dto, Vendedor.class);
@@ -60,7 +59,6 @@ public class VendedorService {
         }
     }
 
-    @Transactional
     public void deletar(Long id) {
         vendedorRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontrado("Usuario não encotrado"));
 

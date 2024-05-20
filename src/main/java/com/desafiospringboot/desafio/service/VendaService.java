@@ -37,7 +37,6 @@ public class VendaService {
     @Autowired
     private ModelMapper modelMapper;
 
-
     @Transactional
     public VendaDTO buscaPorId(Long id) {
         Venda venda = vendaRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontrado("Vendedor não encontrado"));
@@ -57,7 +56,6 @@ public class VendaService {
         return modelMapper.map(venda, VendaDTO.class);
     }
 
-
     public VendaDTO atualizar(Long id, VendaDTO dto) {
         try {
             Venda venda = modelMapper.map(dto, Venda.class);
@@ -73,7 +71,6 @@ public class VendaService {
             throw new RecursoNaoEncontrado("Usuario não encontado");
         }
     }
-
 
     public void deletar(Long id) {
         vendaRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontrado("Usuario não encotrado"));
@@ -103,7 +100,6 @@ public class VendaService {
         }).collect(Collectors.toList());
     }
 
-
     public double calcularMediaDiaria(LocalDate dataInicio, LocalDate dataFim, double totalDeVendas) {
 
         double dias = dataInicio.until(dataFim).getDays() + 1;
@@ -112,7 +108,6 @@ public class VendaService {
 
         return medidaDeVendasDiarias;
     }
-
 
     public void validarData(LocalDate dataInicio, LocalDate dataFim) {
         if(dataInicio.isAfter(dataFim)) throw new IllegalArgumentException("Data inicial não pode ser apos a final!");
