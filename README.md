@@ -70,20 +70,16 @@ http://localhost:8080/venda/resumo?dataInicio=2023-08-03&dataFim=2023-08-10
 ```
 Body (raw)
 ```
-{
-    "valor": 100.0,
-    "dataVenda": "2023-09-10",
-    "vendedor_id": {
-        "id": 1
-    } 
-}
-
--------------------
 [
     {
         "nome": "teste teste",
         "totalDeVendas": 1.0,
         "mediDeVendasDiarias": 0.125
+    },
+    {
+        "nome": "teste1 teste1",
+        "totalDeVendas": 2.0,
+        "mediDeVendasDiarias": 1.5
     }
 ]
 ```
