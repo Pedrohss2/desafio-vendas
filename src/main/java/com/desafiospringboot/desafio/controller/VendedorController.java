@@ -47,4 +47,5 @@ public class VendedorController {
         vendedorService.deletar(id);
         return ResponseEntity.ok().build();
     }
+
 }

@@ -1,6 +1,7 @@
 package com.desafiospringboot.desafio.controller;
 
 import com.desafiospringboot.desafio.dto.VendaDTO;
+import com.desafiospringboot.desafio.dto.VendaMinDTO;
 import com.desafiospringboot.desafio.dto.VendaResumoDTO;
 import com.desafiospringboot.desafio.dto.VendedorDTO;
 import com.desafiospringboot.desafio.service.VendaService;
@@ -27,9 +28,9 @@ public class VendaController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<VendaDTO> buscarVendedorPorId(@PathVariable Long id){
-        VendaDTO vendaDTO = vendaService.buscaPorId(id);
-        return ResponseEntity.ok().body(vendaDTO);
+    public ResponseEntity<VendaMinDTO> buscarVendedorPorId(@PathVariable Long id){
+        VendaMinDTO vendaMinDTO = vendaService.buscaPorId(id);
+        return ResponseEntity.ok().body(vendaMinDTO);
     }
 
     @PostMapping

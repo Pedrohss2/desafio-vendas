@@ -1,6 +1,7 @@
 package com.desafiospringboot.desafio.service;
 
 import com.desafiospringboot.desafio.dto.VendaDTO;
+import com.desafiospringboot.desafio.dto.VendaMinDTO;
 import com.desafiospringboot.desafio.dto.VendaResumoDTO;
 import com.desafiospringboot.desafio.dto.VendedorDTO;
 import com.desafiospringboot.desafio.model.entity.Venda;
@@ -38,10 +39,10 @@ public class VendaService {
     private ModelMapper modelMapper;
 
     @Transactional
-    public VendaDTO buscaPorId(Long id) {
+    public VendaMinDTO buscaPorId(Long id) {
         Venda venda = vendaRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontrado("Vendedor não encontrado"));
 
-        return new VendaDTO(venda);
+        return new VendaMinDTO(venda);
     }
 
     public VendaDTO criar(VendaDTO dto) {
@@ -113,4 +114,5 @@ public class VendaService {
         if(dataInicio.isAfter(dataFim)) throw new IllegalArgumentException("Data inicial não pode ser apos a final!");
         if(dataFim.isBefore(dataInicio)) throw new IllegalArgumentException("Data final não pode ser antes da data inicial!");
     }
+
 }
