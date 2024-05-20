@@ -14,25 +14,30 @@ End point para criar Vendedo
 
 ## Uso/Exemplos
 End-point para criar um vendedor
-```METODO: POST
+
+End-point para criar um novo vendedor 
+
+Method: POST
+```
 http://localhost:8080/vendedor
 ```
-
-```Body (raw)
+Body (raw)
+```
 {
     "nome": "teste teste",
     "email":"teste@gmail.com"
 }
 ```
 -------------------
+End-point: criar venda
 
-End-point: Criar venda
+Method: POST
 
-```METODo: POST
+```
 http://localhost:8080/vendedor
 ```
-
-```Body (raw)
+Body (raw)
+```
 {
     "valor": 100.0,
     "vendedor_id": {
@@ -43,11 +48,15 @@ http://localhost:8080/vendedor
 ```
 -------------------
 End-point: Gerar resumo de vendas
-```METODO: GET
+
+End-point: Gerar resumo de vendas
+
+Method: GET
+```
 http://localhost:8080/venda/resumo?dataInicio=2023-08-03&dataFim=2023-08-10
 ```
-
-```Body (raw)
+Body (raw)
+```
 {
     "valor": 100.0,
     "vendedor_id": {
