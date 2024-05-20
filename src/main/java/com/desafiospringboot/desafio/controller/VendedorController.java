@@ -21,25 +21,25 @@ public class VendedorController {
     @GetMapping("/{id}")
     public ResponseEntity<VendedorDTO> buscarVendedorPorId(@PathVariable Long id){
         VendedorDTO vendedorDTO = vendedorService.buscaPorId(id);
-        return ResponseEntity.ok(vendedorDTO);
+        return ResponseEntity.ok().body(vendedorDTO);
     }
 
     @PostMapping
-    public ResponseEntity<VendedorDTO> inserir(@Valid @RequestBody VendedorDTO dto) {
+    public ResponseEntity<VendedorDTO> criar(@Valid @RequestBody VendedorDTO dto) {
         dto = vendedorService.criar(dto);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(dto.id())
+                .buildAndExpand(dto.getId())
                 .toUri();
 
-        return ResponseEntity.created(uri).body(dto);
+        return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<VendedorDTO> atualizar(@PathVariable Long id, @Valid @RequestBody VendedorDTO dto) {
         dto = vendedorService.atualizar(id, dto);
-        return ResponseEntity.ok(dto);
+        return ResponseEntity.ok().body(dto);
     }
 
     @DeleteMapping("/{id}")

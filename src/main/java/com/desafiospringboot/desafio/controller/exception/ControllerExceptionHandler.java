@@ -1,7 +1,7 @@
 package com.desafiospringboot.desafio.controller.exception;
 
-import com.desafiospringboot.desafio.dto.CustomError;
-import com.desafiospringboot.desafio.dto.ValidationError;
+import com.desafiospringboot.desafio.dto.erros.CustomError;
+import com.desafiospringboot.desafio.dto.erros.ValidationError;
 import com.desafiospringboot.desafio.service.exception.BancoDeDadosException;
 import com.desafiospringboot.desafio.service.exception.RecursoNaoEncontrado;
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,7 +39,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<CustomError> methodArgumentNotValidation(MethodArgumentNotValidException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
-        ValidationError validationError = new ValidationError(Instant.now().minus(duration), status.value(), "invalid data");
+        ValidationError validationError = new ValidationError(Instant.now().minus(duration), status.value(), "Dados invalidos");
 
         for(FieldError error : e.getBindingResult().getFieldErrors()) {
             validationError.addError(error.getField(), error.getDefaultMessage());

@@ -6,6 +6,8 @@ import com.desafiospringboot.desafio.repository.VendedorRepository;
 import com.desafiospringboot.desafio.service.exception.BancoDeDadosException;
 import com.desafiospringboot.desafio.service.exception.RecursoNaoEncontrado;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -16,42 +18,42 @@ public class VendedorService {
     @Autowired
     private VendedorRepository vendedorRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
+    @Transactional
     public VendedorDTO buscaPorId(Long id) {
         Vendedor vendedor = vendedorRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontrado("Vendedor não encontrado"));
 
         return new VendedorDTO(vendedor.getId(), vendedor.getNome(), vendedor.getEmail());
     }
 
+    @Transactional
     public VendedorDTO criar(VendedorDTO dto) {
-        Vendedor vendedor1 = new Vendedor();
 
-        vendedor1.setId(dto.id());
-        vendedor1.setNome(dto.nome());
-        vendedor1.setEmail(dto.email());
+        Vendedor vendedor = modelMapper.map(dto, Vendedor.class);
 
-        vendedor1 = vendedorRepository.save(vendedor1);
+        vendedor = vendedorRepository.save(vendedor);
 
-        return new VendedorDTO(vendedor1.getId(), vendedor1.getNome(), vendedor1.getEmail());
+        return modelMapper.map(vendedor, VendedorDTO.class);
     }
 
+    @Transactional
     public VendedorDTO atualizar(Long id, VendedorDTO dto) {
 
         try {
-            Vendedor vendedor1 = new Vendedor();
+            Vendedor vendedor = modelMapper.map(dto, Vendedor.class);
 
-            vendedor1.setId(id);
-            vendedor1.setNome(dto.nome());
-            vendedor1.setEmail(dto.email());
+            vendedor = vendedorRepository.save(vendedor);
 
-            vendedor1 = vendedorRepository.save(vendedor1);
-            return new VendedorDTO(vendedor1.getId(), vendedor1.getNome(), vendedor1.getEmail());
+            return modelMapper.map(vendedor, VendedorDTO.class);
         }
         catch (EntityNotFoundException e) {
             throw new RecursoNaoEncontrado("Usuario não encontado");
         }
     }
 
-
+    @Transactional
     public void deletar(Long id) {
         vendedorRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontrado("Usuario não encotrado"));
 
@@ -62,5 +64,4 @@ public class VendedorService {
             throw new BancoDeDadosException("Erro ao deletar vendedor");
         }
     }
-
 }

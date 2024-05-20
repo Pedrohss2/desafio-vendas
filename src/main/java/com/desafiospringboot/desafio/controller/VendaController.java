@@ -26,10 +26,10 @@ public class VendaController {
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(dto.id())
+                .buildAndExpand(dto.getId())
                 .toUri();
 
-        return ResponseEntity.created(uri).body(dto);
+        return ResponseEntity.created(uri).build();
     }
 
     @GetMapping("/resumo")

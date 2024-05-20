@@ -1,4 +1,4 @@
-package com.desafiospringboot.desafio.dto;
+package com.desafiospringboot.desafio.dto.erros;
 
 import java.time.Instant;
 import java.util.ArrayList;

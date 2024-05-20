@@ -1,4 +1,4 @@
-package com.desafiospringboot.desafio.dto;
+package com.desafiospringboot.desafio.dto.erros;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

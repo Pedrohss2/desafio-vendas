@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,6 +23,7 @@ public class Vendedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "nome", nullable = true)
     private String nome;
 
@@ -29,20 +31,16 @@ public class Vendedor {
     @Column(unique = true)
     private String email;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "criado_em", nullable = false, updatable = false)
+    private Date criadoEm;
+
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "atualizado_em", nullable = false, updatable = false)
+    private Date atualizadoEm;
+
     @OneToMany(mappedBy = "vendedor")
     private List<Venda> vendas = new ArrayList<>();
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Vendedor vendedor = (Vendedor) o;
-        return Objects.equals(email, vendedor.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(email);
-    }
 }
