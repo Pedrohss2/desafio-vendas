@@ -5,7 +5,7 @@ Uma API que permite criar um vendedor, posta venda e gera um resumo de vendas.
 
 Estrutura do projeto: 
 
-desafio-springboot/
+```desafio-springboot/
 |-- src/
 |   |-- main/
 |   |   |-- java/
@@ -24,7 +24,7 @@ desafio-springboot/
 |   |   |   |-- application.properties
 |   |   |-- static/
 |   |   |-- templates/
-
+```
 
 ## Funcionalidades
 
