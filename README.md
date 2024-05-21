@@ -1,7 +1,30 @@
 
-# API - Sistema de tarefas
+# API - Sistema de VENDAS
 
 Uma API que permite criar um vendedor, posta venda e gera um resumo de vendas.
+
+Estrutura do projeto: 
+```
+desafio-springboot/
+|-- src/
+|   |-- main/
+|   |   |-- java/
+|   |   |   |-- com/
+|   |   |   |   |-- desafiospringboot/
+|   |   |   |   |   |-- desafio/
+|   |   |   |   |   |   |-- config/
+|   |   |   |   |   |   |-- controller/
+|   |   |   |   |   |   |-- dto/
+|   |   |   |   |   |   |-- exception/
+|   |   |   |   |   |   |-- model/
+|   |   |   |   |   |   |-- repository/
+|   |   |   |   |   |   |-- service/
+|   |   |   |   |   |   |-- DesafioSpringbootApplication.java
+|   |   |-- resources/
+|   |   |   |-- application.properties
+|   |   |-- static/
+|   |   |-- templates/
+```
 
 ## Funcionalidades
 
