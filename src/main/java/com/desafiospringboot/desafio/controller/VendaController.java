@@ -3,7 +3,6 @@ package com.desafiospringboot.desafio.controller;
 import com.desafiospringboot.desafio.dto.VendaDTO;
 import com.desafiospringboot.desafio.dto.VendaMinDTO;
 import com.desafiospringboot.desafio.dto.VendaResumoDTO;
-import com.desafiospringboot.desafio.dto.VendedorDTO;
 import com.desafiospringboot.desafio.service.VendaService;
 import com.desafiospringboot.desafio.service.VendedorService;
 import jakarta.validation.Valid;
