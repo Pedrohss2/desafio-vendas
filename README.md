@@ -1,5 +1,5 @@
 
-# API - Sistema de tarefas
+# API - Sistema de VENDAS
 
 Uma API que permite criar um vendedor, posta venda e gera um resumo de vendas.
 
