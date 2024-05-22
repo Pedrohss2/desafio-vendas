@@ -33,7 +33,7 @@ Clone o projeto na branch 'main'
 ```run
   git clone https://github.com/Pedrohss2/desafio-vendas.git
 ```
-Abra sua a pasta no inteliji e rode ele.
+Abra a pasta que foi clonada no inteliji e rode ele.
 
 Após rodar o projeto acesse o h2-console pela web com: 
 
