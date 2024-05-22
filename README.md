@@ -28,13 +28,13 @@ desafio-springboot/
 
 ## Como rodar o projeto
 
-Clone e rode o projeto na sua máquina
 Clone o projeto na branch 'main'
 
 ```run
   git clone https://github.com/Pedrohss2/desafio-vendas.git
 ```
-Abra sua a pasta do sistema em no inteliji e rode
+Abra sua a pasta no inteliji e rode ele.
+
 Após rodar o projeto acesse o h2-console pela web com: 
 
 ```h2-console
