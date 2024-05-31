@@ -110,5 +110,4 @@ public class VendaService {
         if(dataInicio.isAfter(dataFim)) throw new IllegalArgumentException("Data inicial não pode ser apos a final!");
         if(dataFim.isBefore(dataInicio)) throw new IllegalArgumentException("Data final não pode ser antes da data inicial!");
     }
-
 }
