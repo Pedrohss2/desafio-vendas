@@ -37,6 +37,12 @@ Abra a pasta que foi clonada no intelij e rode o comando docker compose up para 
 Após rodar o projeto acesse o mysql para ter acesso as tabelas:
 os dados do mysql estão no arquivo `docker-compose.yml`
 
+Para ter acesso ao swagger-API:
+
+```swagger
+  http://{host}/swagger-ui/index.html#/blog-controller/create_1
+```
+
 ## Funcionalidades
 
 - CRUD vendedor
