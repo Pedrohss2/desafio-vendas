@@ -24,8 +24,7 @@ desafio-springboot/
 |   |   |   |-- application.properties
 |   |   |-- static/
 |   |   |-- templates/
-```
-
+````
 ## Como rodar o projeto
 
 Clone o projeto na branch 'main'
@@ -33,9 +32,10 @@ Clone o projeto na branch 'main'
 ```run
   git clone https://github.com/Pedrohss2/desafio-vendas.git
 ```
-Abra a pasta que foi clonada no inteliji e rode ele.
+Abra a pasta que foi clonada no inteliji e rode o comando docker compose up para iniciar o container do mysql no terminal.
 
 Após rodar o projeto acesse o mysql para ter acesso as tabelas:
+os dados do mysql estão no arquivo `docker-compose.yml`
 
 ## Funcionalidades
 
