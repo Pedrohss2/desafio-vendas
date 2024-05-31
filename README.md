@@ -35,11 +35,7 @@ Clone o projeto na branch 'main'
 ```
 Abra a pasta que foi clonada no inteliji e rode ele.
 
-Após rodar o projeto acesse o h2-console pela web com: 
-
-```h2-console
-  http://localhost:8080/h2-console/
-```
+Após rodar o projeto acesse o mysql para ter acesso as tabelas:
 
 ## Funcionalidades
 
