@@ -67,13 +67,13 @@ End-point: Procurar Vendedor por ID
 
 Method: GET
 ```
-localhost:8080/vendedor/xxxx
+localhost:8080/vendedor/1
 ```
 Body (Pretty)
 
 ```
 {
-    "id": xxxx,
+    "id": 1,
     "nome": "teste teste",
     "email": "teste@gmail.com",
     "criadoEm": "2024-05-20T23:17:50.295+00:00",
@@ -87,7 +87,7 @@ End-point: Criar venda
 Method: POST
 
 ```
-http://localhost:8080/vendedor
+http://localhost:8080/venda
 ```
 Body (raw)
 ```
