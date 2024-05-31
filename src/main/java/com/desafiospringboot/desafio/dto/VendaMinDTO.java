@@ -1,7 +1,6 @@
 package com.desafiospringboot.desafio.dto;
 
 import com.desafiospringboot.desafio.model.entity.Venda;
-import com.desafiospringboot.desafio.model.entity.Vendedor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
