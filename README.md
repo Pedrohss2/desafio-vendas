@@ -32,7 +32,7 @@ Clone o projeto na branch 'main'
 ```run
   git clone https://github.com/Pedrohss2/desafio-vendas.git
 ```
-Abra a pasta que foi clonada no inteliji e rode o comando docker compose up para iniciar o container do mysql no terminal.
+Abra a pasta que foi clonada no intelij e rode o comando docker compose up para iniciar o container do mysql no terminal.
 
 Após rodar o projeto acesse o mysql para ter acesso as tabelas:
 os dados do mysql estão no arquivo `docker-compose.yml`
