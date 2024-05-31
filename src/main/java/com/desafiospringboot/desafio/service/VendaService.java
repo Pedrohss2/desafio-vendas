@@ -89,8 +89,6 @@ public class VendaService {
 
             double totalDeVendas = vendedor.getVendas().size();
 
-            List<Venda> venda = vendaRepository.findVendaByVendedor(vendedor.getId(), dataInicio, dataFim);
-
             double mediaDiaria = this.calcularMediaDiaria(dataInicio, dataFim, totalDeVendas);
 
             return new VendaResumoDTO(vendedor.getNome(), totalDeVendas, mediaDiaria);

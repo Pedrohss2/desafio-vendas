@@ -68,9 +68,4 @@ public class VendaController {
         var valores = vendaService.calcularVendasPorPeriodo(dataInicioParse, dataFinalParse);
         return ResponseEntity.ok().body(valores);
     }
-
-
-
-
-
 }

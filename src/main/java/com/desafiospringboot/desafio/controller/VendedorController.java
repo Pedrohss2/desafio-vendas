@@ -17,7 +17,6 @@ public class VendedorController {
     @Autowired
     private VendedorService vendedorService;
 
-
     @GetMapping("/{id}")
     public ResponseEntity<VendedorDTO> buscarVendedorPorId(@PathVariable Long id){
         VendedorDTO vendedorDTO = vendedorService.buscaPorId(id);
