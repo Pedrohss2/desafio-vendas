@@ -125,3 +125,11 @@ Body (raw)
 ```
 
 
+## Melhorias
+Aceito opniões para melhoria de código, sinta-se avontade em entrar em contato comigo e falar sobre suas ideias
+
+## Autor
+- [@pedroH](https://github.com/Pedrohss2)
+
+
+
