@@ -35,7 +35,7 @@ Clone o projeto na branch 'main'
 Abra a pasta que foi clonada no intelij e rode o comando docker compose up para iniciar o container do mysql no terminal.
 
 Após rodar o projeto acesse o mysql para ter acesso as tabelas:
-os dados do mysql estão no arquivo `docker-compose.yml`
+os dados do mysql estão no arquivo `pom.xml`
 
 Para ter acesso ao swagger-API:
 
