@@ -57,7 +57,7 @@ Method: POST
 http://localhost:8080/vendedor
 ```
 Body (raw)
-```
+```json
 {
     "nome": "teste teste",
     "email":"teste@gmail.com"
@@ -73,7 +73,7 @@ localhost:8080/vendedor/1
 ```
 Body (Pretty)
 
-```
+```json
 {
     "id": 1,
     "nome": "teste teste",
@@ -88,11 +88,11 @@ End-point: Criar venda
 
 Method: POST
 
-```
+```json
 http://localhost:8080/venda
 ```
 Body (raw)
-```
+```json
 {
     "valor": 100.0,
     "vendedor_id": {
@@ -105,11 +105,11 @@ Body (raw)
 End-point: Gerar resumo de vendas
 
 Method: GET
-```
+```json
 http://localhost:8080/venda/resumo?dataInicio=2023-08-03&dataFim=2023-08-10
 ```
 Body (raw)
-```
+```json
 [
     {
         "nome": "teste teste",
