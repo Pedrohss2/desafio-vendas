@@ -29,7 +29,7 @@ desafio-springboot/
 
 Clone o projeto na branch 'main'
 
-```run
+```git
   git clone https://github.com/Pedrohss2/desafio-vendas.git
 ```
 Abra a pasta que foi clonada no intelij e rode o comando docker compose up para iniciar o container do mysql no terminal.
@@ -88,7 +88,7 @@ End-point: Criar venda
 
 Method: POST
 
-```json
+```
 http://localhost:8080/venda
 ```
 Body (raw)
@@ -105,7 +105,7 @@ Body (raw)
 End-point: Gerar resumo de vendas
 
 Method: GET
-```json
+```
 http://localhost:8080/venda/resumo?dataInicio=2023-08-03&dataFim=2023-08-10
 ```
 Body (raw)
